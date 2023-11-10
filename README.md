@@ -25,3 +25,4 @@ python client.py --host=MY_HOSTNAME --port=MY_PORT
 ## Refernece
 - [HyperStyle: StyleGAN Inversion with HyperNetworks for Real Image Editing](https://github.com/yuval-alaluf/hyperstyle/)
 - [StyleCLIP: Text-Driven Manipulation of StyleGAN Imagery](https://github.com/orpatashnik/StyleCLIP)
+- [StyleCLIP-Tutorial](https://github.com/ndb796/StyleCLIP-Tutorial)
