@@ -2,3 +2,5 @@
 __pycache__/
 .vscode/
 results/
+flagged/
+.python-version
