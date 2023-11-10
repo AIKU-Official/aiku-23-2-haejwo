@@ -3,15 +3,6 @@ import time
 import requests
 from PIL import Image
 import io
-import torch
-from stylegan2.model import Generator
-from torchvision.utils import make_grid, save_image
-from torchvision.transforms import ToPILImage
-import clip
-import os
-from utils import get_lr
-from clip_loss import CLIPLoss
-from config import args, device
 import argparse
 
 
@@ -58,4 +49,5 @@ def main():
     
 
 if __name__ == "__main__":
+    
     main()
