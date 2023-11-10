@@ -12,6 +12,8 @@ import os
 from utils import get_lr
 from clip_loss import CLIPLoss
 from config import args, device
+import argparse
+
 
 app = gr.Blocks()
 
@@ -45,4 +47,15 @@ with app:
 
     gen_button.click(fn=generate_image, inputs=[input_image, input_prompt], outputs=output_image)
 
-app.queue().launch()
+
+def main():
+    parser = argparse.ArgumentParser(description="Launch Gradio app")
+    parser.add_argument("--host", type=str, default="127.0.0.1", help="Port to run app on.")
+    parser.add_argument("--port", type=int, default=7860, help="Port to run app on.")
+    args = parser.parse_args()
+
+    app.queue().launch(server_name=args.host, server_port=args.port)
+    
+
+if __name__ == "__main__":
+    main()
