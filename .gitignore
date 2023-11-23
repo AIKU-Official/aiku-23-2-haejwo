@@ -4,3 +4,4 @@ __pycache__/
 results/
 flagged/
 .python-version
+.venv/

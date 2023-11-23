@@ -3,7 +3,6 @@ import os
 import torch
 
 args = Namespace()
-args.description = 'A really sad face'
 args.lr_rampup = 0.05
 args.lr = 0.1
 args.step = 150
