@@ -1,5 +1,5 @@
 import argparse
-from client import app
+from .client import app
 
 def main():
     parser = argparse.ArgumentParser(description="Launch Gradio app")

@@ -15,9 +15,11 @@ tqdm = "^4.66.1"
 gradio = "^4.5.0"
 ipykernel = "^6.27.0"
 torchvision = "^0.16.1"
+dlib = "^19.24.2"
+scipy = "^1.11.4"
 
 [tool.poetry.scripts]
-client = "txt2fix/launch.py"
+client = "txt2fix.launch:main"
 
 
 [build-system]

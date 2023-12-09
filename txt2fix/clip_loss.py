@@ -1,6 +1,6 @@
 import clip
 import torch
-from config import device
+from .config import device
 
 # CLIP Loss
 class CLIPLoss(torch.nn.Module):
