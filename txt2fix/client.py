@@ -20,6 +20,7 @@ with app:
         gr.Markdown('''
                     # 1. StyleGAN은 당신을 이렇게 생각해요
                     StyleGAN latent로 변환
+                    - 변환 안하면 랜덤 이미지를 원본으로 변형
                     ''')
     
     with gr.Row():
@@ -38,8 +39,8 @@ with app:
         with gr.Column(scale=1, ):
             input_image = gr.Image(type="pil", label="Input Image", value=None)
             input_prompt = gr.Textbox(lines=1, interactive=True,label="Prompt")
-            steps = gr.Slider(minimum=10, maximum=200, label="Steps")
-            clip_loss_strength = gr.Slider(minimum=0, maximum=5, value=float ,label="Clip Loss Strength")
+            steps = gr.Slider(minimum=10, maximum=200, value=100,label="Steps")
+            clip_loss_strength = gr.Slider(minimum=0, maximum=5, value=1.0,label="Clip Loss Strength")
             gen_button = gr.Button("\"해줘\"")
         with gr.Column(scale=1):
             output_image = gr.Image(type="pil", label="Output Image")
@@ -48,8 +49,6 @@ with app:
     con_button_t.click(fn=styleganEncode, inputs=[input_image_t], outputs=[output_image_t,recent_latents])
 
 # TODO : Encode Resueable
-# - global var
-# - main.py = encoder connect function
 # - Dockerize
 # - Dependency cleanup
 

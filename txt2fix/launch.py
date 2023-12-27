@@ -7,7 +7,7 @@ def main():
     parser.add_argument("--port", type=int, default=7860, help="Port to run app on.")
     args = parser.parse_args()
 
-    app.queue().launch(server_name=args.host, server_port=args.port)
+    app.queue().launch(server_name=args.host, server_port=args.port, share=True)
 
 if __name__ == "__main__":
     main()
