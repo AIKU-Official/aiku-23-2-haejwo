@@ -48,5 +48,5 @@ poetry run client
 
 - [김민성](https://github.com/mingsung-k): StyleCLIP - LatentMapper/Global-Direction
 - [김규민](https://github.com/KY00KIM/): StyleCLIP - Latent-Optimization
-- [황정현](홍길동의 github link): StyleCLIP - LatentMapper/Global-Direction
+- [황정현]([홍길동의 github link](https://github.com/imjunghyunee/)): StyleCLIP - LatentMapper/Global-Direction
 
