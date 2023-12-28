@@ -1,29 +1,52 @@
 # 보정..해줘
 
-📢 2023년 2 [AIKU](https://github.com/AIKU-Official) 활동으로 진행한 프로젝트입니다
+📢 2023년-2 [AIKU](https://github.com/AIKU-Official) 활동으로 진행한 프로젝트입니다
 
 ## 소개
 
-StyleCLIP을 이용한 이미지 보정 데모 프로젝트 입니다.
+StyleCLIP을 이용한 얼굴 이미지 보정 데모 프로젝트 입니다.
 
 ## 방법론
 
-(문제를 정의하고 이를 해결한 방법을 가독성 있게 설명해주세요)
+- **문제** : 이미지 편집을 텍스트를 통해 보다 쉽게, 불필요한 부분이 변형되는 것을 최소화하자
+- **방법론** : StyleCLIP, StyleGAN 과 CLIP을 이용해, 원본 이미지를 유지한 채, 텍스트로 쉽게 이미지를 편집하는 모델
+  1. StyleGAN Inversion : 사용자 입력 이미지를 StyleGAN space의 latent 이미지 벡터로 변환
+  2. StyleCLIP 
+    - Latent-Optimization : CLIP loss, GAN Inception Loss 이용해 이미지 벡터를 최적화
+    - Global Direction : CLIP space와 StyleGAN space direction을 맵핑하여, 이미지 벡터 최적화
 
 ## 환경 설정
 
-(Requirements, Anaconda, Docker 등 프로젝트를 사용하는데에 필요한 요구 사항을 나열해주세요)
+### Environment Setup
+
+- [Poetry](https://python-poetry.org/) : Dependency manager
+- Download 2 pretrained stylegan2, face-enocder, shape_predictor, HyperStyle to project `txt2fix/models` directory
+  - [Download pretrained StyleGan2](https://drive.google.com/file/d/1UC_22inUDEZiAfZ-UaQO_AZ4Ah40mAr8/view?usp=sharing) 
+  - [Download pretrained FaceEncoder](https://drive.google.com/file/d/1BlHw_7pFxwCL51o6GKLyAwyIoqb9p0U2/view?usp=sharing)
+  - [Download pretrained ShapePredictor](https://drive.google.com/file/d/1XRKtDDSQqug-OmYPbXWRjBCMfI2JmkQP/view?usp=sharing)
+  - [Download pretrained HyperStyle](https://drive.google.com/file/d/1_5g-wkZQ3QmMD3uo0nJzlwTzX9mSkN67/view?usp=drive_link)
+  - [Download pretrained encoding4editing](https://drive.google.com/file/d/1ceyCq126bUqbGoakpwWVyt5AstvrWHih/view?usp=sharing)
+  - [Download pretrained StyleGan2_Pkl](https://drive.google.com/file/d/1wNdsEFGyNaC_6WpP81mpYrfoMbpgtPP7/view?usp=sharing)
+  - [Download pretrained BERT-ViT](https://drive.google.com/file/d/1jxf1TThQqdjYwk8wPZueP3eNeuz9WLu7/view?usp=sharing)
+
+
+
 
 ## 사용 방법
 
-(프로젝트 실행 방법 (명령어 등)을 적어주세요.)
-
+### Build & Run
+```bash
+# recommend python 3.10 or higher
+poetry install
+poetry run client
+```
 ## 예시 결과
-
-(사용 방법을 실행했을 때 나타나는 결과나 시각화 이미지를 보여주세요)
+- **Latent Optimization** : "Really sad face"
+    ![example_image](https://github.com/AIKU-Official/aiku-23-2-haejwo/assets/55953815/f4f7b1ce-2feb-4005-b74f-9d97aa9b9b2c)
 
 ## 팀원
 
-(프로젝트에 참여한 팀원의 이름과 깃헙 프로필 링크, 역할을 작성해주세요)
+- [김민성](https://github.com/mingsung-k): StyleCLIP - LatentMapper/Global-Direction
+- [김규민](https://github.com/KY00KIM/): StyleCLIP - Latent-Optimization
+- [황정현](홍길동의 github link): StyleCLIP - LatentMapper/Global-Direction
 
-- [홍길동](홍길동의 github link): (수행한 역할을 나열)
