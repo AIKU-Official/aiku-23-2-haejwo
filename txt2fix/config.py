@@ -21,6 +21,8 @@ else: device = torch.device("cpu")
 
 os.makedirs(args.results_dir, exist_ok=True)
 
+fs3_file_path='txt2fix/global_direction/fs3.npy'
+
 model_paths = {
 	# models for backbones and losses
 	'ir_se50': 'txt2fix/models/model_ir_se50.pth',
@@ -28,6 +30,7 @@ model_paths = {
 	'moco': 'txt2fix/models/moco_v2_800ep_pretrain.pt',
 	# stylegan2 generators
 	'stylegan_ffhq': 'txt2fix/models/stylegan2-ffhq-config-f.pt',
+	'stylegan_ffhq_pkl': 'txt2fix/models/stylegan2-ffhq-config-f.pkl',
 	'stylegan_cars': 'txt2fix/models/stylegan2-car-config-f.pt',
 	'stylegan_ada_wild': 'txt2fix/models/afhqwild.pt',
 	# model for face alignment
@@ -48,7 +51,8 @@ model_paths = {
 	'stylegan_sketch': 'txt2fix/models/sketch.pt',
 	'stylegan_disney': 'txt2fix/models/disney_princess.pt',
 	'shape_predictor':  'txt2fix/models/shape_predictor_68_face_landmarks.dat',
- 	"hyperstyle_model_path": "txt2fix/models/hyperstyle_ffhq.pt"
+ 	"hyperstyle_model_path": "txt2fix/models/hyperstyle_ffhq.pt",
+ 	"e4e_ffhq_model_path": "txt2fix/models/e4e_ffhq_encode.pt"
 }
 
 RESNET_MAPPING = {
@@ -69,3 +73,86 @@ RESNET_MAPPING = {
     'layer4.1': 'body.14',
     'layer4.2': 'body.15',
 }
+
+
+IMAGENET_TEMPLATES = [
+'{}의 나쁜 사진.',
+'{}의 조각상.',
+'{} 보기 어려운 사진.',
+'{}의 저해상도 사진.',
+'{}의 렌더링.',
+'{}의 숫자.',
+'나쁜 {} 사진.',
+'{}를 자른 사진.',
+'{}의 문신.',
+'자수 {}.',
+'{} 보기 힘든 사진.',
+'{}의 밝은 사진.',
+'깨끗한 {}의 사진.',
+'더러운 {}의 사진.',
+'{}의 어두운 사진.',
+'{} 그림.',
+'내 {}의 사진.',
+'플라스틱 {}',
+'멋진 {}의 사진.',
+'{}의 클로즈업 사진.',
+'{}의 흑백 사진.',
+'{}을 그린 그림.',
+'{}를 그린 그림.',
+'{}의 픽셀화된 사진.',
+'{}의 조각상.',
+'{}의 밝은 사진.',
+'{}의 자른 사진.',
+'플라스틱 {}.' ,
+'더러운 {}의 사진.',
+'{} JPEG 손상 사진.',
+'{} 흐릿한 사진.',
+'{} 사진.',
+'{} 좋은 사진.',
+'{} 렌더링.',
+'비디오 게임 {}.',
+'한 {} 사진.',
+'{} 낙서.',
+'{} 클로즈업 사진.',
+'{} 사진.',
+'종이접기 {}.',
+'{} 비디오 게임.',
+'{}의 스케치.',
+'{}의 낙서.',
+'{} 종이접기.',
+'{}의 저해상도 사진.',
+'장난감 {}.' ,
+'{}을 변형한 것.',
+'청렴한 {}의 사진.',
+'큰 {}의 사진.',
+'{}을 해석한 것.',
+'멋진 {}의 사진.',
+'이상한 {}의 사진.',
+'{}의 흐릿한 사진.',
+'만화 {}.' ,
+'{} 작품.' ,
+'{}의 스케치.',
+'{} 자수.',
+'{} 픽셀화된 사진.',
+'{} itap.',
+'{} JPEG 손상 사진.',
+'좋은 {}의 사진.',
+'{} 인형.' ,
+'멋진 {}의 사진.',
+'작은 {}의 사진.',
+'이상한 {}의 사진.',
+'만화 {}.' ,
+'{} 예술.',
+'{}을 그립니다.',
+'큰 {}의 사진.',
+'흑백 {} 사진.',
+'인형 {}.' ,
+'어두운 {} 사진.',
+'내가 찍은 {} 사진.',
+'{} 중 하나.',
+'장난감 {}.' ,
+'내 {} itap.',
+'멋진 {} 사진.',
+'작은 {}의 사진.',
+'{}의 문신.'
+]

@@ -7,6 +7,7 @@ from PIL import Image
 import io
 from txt2fix.styleclip import inferLatentOptim
 from txt2fix.stylegan_encode import styleganEncode
+from txt2fix.global_direction.global_direction import multilingual_global
 import torch
 
 app = gr.Blocks()
@@ -32,8 +33,7 @@ with app:
             recent_latents= gr.List([])
     with gr.Row():
         gr.Markdown('''
-                    # 2. 보정 시작
-                    StyleGAN latent Optimization
+                    # 2-1. StyleCLIP Latent Optimization
                     ''')
     with gr.Row():
         with gr.Column(scale=1, ):
@@ -44,9 +44,24 @@ with app:
             gen_button = gr.Button("\"해줘\"")
         with gr.Column(scale=1):
             output_image = gr.Image(type="pil", label="Output Image")
+    with gr.Row():
+        gr.Markdown('''
+                    # 2-2. StyleCLIP Global Direction
+                    ''')
+    with gr.Row():
+        with gr.Column(scale=1, ):
+            input_image_glob = gr.Image(type="pil", label="Input Image", value=None)
+            neutral_prompt = gr.Textbox(lines=1, interactive=True,label="Neutral Text")
+            target_prompt = gr.Textbox(lines=1, interactive=True,label="Target Text")
+            beta = gr.Slider(minimum=0.08, maximum=0.3, step=0.01,label="Beta")
+            alpha = gr.Slider(minimum=10, maximum=200, step=0.01,label="Alpha")
+            gen_button_glob = gr.Button("\"해줘\"")
+        with gr.Column(scale=1):
+            output_image_glob = gr.Image(type="pil", label="Output Image")
 
     gen_button.click(fn=inferLatentOptim, inputs=[input_prompt, steps, clip_loss_strength, input_image], outputs=output_image)
     con_button_t.click(fn=styleganEncode, inputs=[input_image_t], outputs=[output_image_t,recent_latents])
+    gen_button_glob.click(fn=multilingual_global, inputs=[input_image_glob, neutral_prompt, target_prompt, beta,alpha], outputs=output_image_glob)
 
 # TODO : Encode Resueable
 # - Dockerize
