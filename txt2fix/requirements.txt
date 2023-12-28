@@ -1,6 +1,0 @@
-git+https://github.com/openai/CLIP.git
-ftfy
-regex
-tqdm
-torch==2.0.1
-torchvision==0.15.2
