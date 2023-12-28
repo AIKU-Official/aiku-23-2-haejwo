@@ -15,6 +15,10 @@ Light wrapper for styleCLIP latent optimization for image revision.
   - [Download pretrained FaceEncoder](https://drive.google.com/file/d/1BlHw_7pFxwCL51o6GKLyAwyIoqb9p0U2/view?usp=sharing)
   - [Download pretrained ShapePredictor](https://drive.google.com/file/d/1XRKtDDSQqug-OmYPbXWRjBCMfI2JmkQP/view?usp=sharing)
   - [Download pretrained HyperStyle](https://drive.google.com/file/d/1_5g-wkZQ3QmMD3uo0nJzlwTzX9mSkN67/view?usp=drive_link)
+  - [Download pretrained encoding4editing](https://drive.google.com/file/d/1ceyCq126bUqbGoakpwWVyt5AstvrWHih/view?usp=sharing)
+  - [Download pretrained StyleGan2_Pkl](https://drive.google.com/file/d/1wNdsEFGyNaC_6WpP81mpYrfoMbpgtPP7/view?usp=sharing)
+  - [Download pretrained BERT-ViT](https://drive.google.com/file/d/1jxf1TThQqdjYwk8wPZueP3eNeuz9WLu7/view?usp=sharing)
+
 
 ## Build & Run
 ```bash
