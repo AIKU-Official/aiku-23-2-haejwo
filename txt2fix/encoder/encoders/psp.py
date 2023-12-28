@@ -10,6 +10,8 @@ from .w_encoder import WEncoder
 from ...stylegan2.model import Generator
 from ...config import model_paths
 
+from .psp_encoders import Encoder4Editing
+
 
 def get_keys(d, name):
 	if 'state_dict' in d:
@@ -24,10 +26,12 @@ class pSp(nn.Module):
 		super(pSp, self).__init__()
 		self.set_opts(opts)
 		# compute number of style inputs based on the output resolution
-		self.opts.n_styles = int(math.log(self.opts.output_size, 2)) * 2 - 2
+		# self.opts.n_styles = int(math.log(self.opts.output_size, 2)) * 2 - 2
+		self.opts.n_styles = int(math.log(1024, 2)) * 2 - 2
 		# Define architecture
 		self.encoder = self.set_encoder()
-		self.decoder = Generator(self.opts.output_size, 512, 8)
+		# self.decoder = Generator(self.opts.output_size, 512, 8)
+		self.decoder = Generator(1024, 512, 8)
 		self.face_pool = torch.nn.AdaptiveAvgPool2d((256, 256))
 		# Load weights if needed
 		self.load_weights()
@@ -35,6 +39,8 @@ class pSp(nn.Module):
 	def set_encoder(self):
 		if self.opts.encoder_type == 'WEncoder':
 			encoder = WEncoder(50, 'ir_se', self.opts)
+		elif self.opts.encoder_type == 'Encoder4Editing':
+			encoder = Encoder4Editing(50, 'ir_se', self.opts)
 		else:
 			raise Exception('{} is not a valid encoders'.format(self.opts.encoder_type))
 		return encoder
